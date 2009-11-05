@@ -1,0 +1,8 @@
+This is Arduino code, and perhaps more later, to control a pump that flows water for hydroponics purposes.
+
+Pictures of the "reference implementation" (lol) can be seen here: http://www.flickr.com/photos/nemik/sets/72157622608195083/
+
+The pump is a windshield washer pump from a Ford car. It is running from a 12v 1A AC->DC adapter and seems to be working fine like that, very powerful.
+
+TODO:
+Create and upload schematics
