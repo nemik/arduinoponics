@@ -4,5 +4,9 @@ Pictures of the "reference implementation" (lol) can be seen here: http://www.fl
 
 The pump is a windshield washer pump from a Ford car. It is running from a 12v 1A AC->DC adapter and seems to be working fine like that, very powerful.
 
+The StandardFirmata firmware has now been included in this code. I plan to use it to read sensors attached to the circuit such as temperature, photosensor for light, etc. External components coming later such as lighting (perhaps via PWM too if LED?) so it can be controlled via the host machine and it can log all this. Perhaps some other indicator LED's such as one to change the water, etc.
+I'm open for ideas!
+
 TODO:
-Create and upload schematics
+* Create and upload schematics
+* Modify Firmata further to be able to change variables over the protocol, such as the pump_run_interval and pump_run_seconds
