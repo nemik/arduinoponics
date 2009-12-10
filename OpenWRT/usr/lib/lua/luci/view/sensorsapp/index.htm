@@ -1,0 +1,36 @@
+<%+header%>
+<script src="/luci-static/resources/prototype.js"></script>
+
+<script>
+var x = function()
+	{
+	new Ajax.Request('/cgi-bin/luci/sensors/ajax/get_analogs', { method:'get',
+		onSuccess: function(transport, json)
+		{
+			var vals = transport.responseText.split('|');
+			$('a0_value').update(vals[0]);
+			$('a1_value').update(vals[1]);
+			$('a2_value').update(vals[2]);
+			$('a3_value').update(vals[3]);
+			$('a4_value').update(vals[4]);
+			$('a5_value').update(vals[5]);
+			$('light_value').update(vals[0]);
+		}
+	});
+	};
+
+setInterval('x()',1000);
+                    
+</script>
+
+<h1><%:hw Sensors%></h1>
+<br />
+<br />
+<h3>Current light reading: <span id="light_value"><%=current_light%></span></h3>
+<h3>Analog Pin 0: <span id="a0_value"><%=a0_value%></span></h3>
+<h3>Analog Pin 1: <span id="a1_value"><%=a1_value%></span></h3>
+<h3>Analog Pin 2: <span id="a2_value"><%=a2_value%></span></h3>
+<h3>Analog Pin 3: <span id="a3_value"><%=a3_value%></span></h3>
+<h3>Analog Pin 4: <span id="a4_value"><%=a4_value%></span></h3>
+<h3>Analog Pin 5: <span id="a5_value"><%=a5_value%></span></h3>
+<%+footer%>

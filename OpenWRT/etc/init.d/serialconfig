@@ -1,0 +1,3 @@
+mkdir /tmp/sensors
+stty -F /dev/ttyS0 raw -echo speed 9600 ospeed 9600 ispeed 9600 clocal cread
+lua /root/serial/s.lua &> /dev/null
