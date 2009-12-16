@@ -91,14 +91,7 @@ void inline sendAnalogs()
 
 void inline toggleLights()
 {
-  if(lights_on)
-  {
-    lights_on = false;
-  }
-  else
-  {
-    lights_on = true;
-  }
+    lights_on = !lights_on;
 }
 
 void inline checkSerial()
@@ -106,7 +99,6 @@ void inline checkSerial()
   if (Serial.available() > 0)
   {
     int incoming = Serial.read();
-    
     if ((char)incoming == 'l')
     {
       toggleLights();
@@ -127,7 +119,7 @@ void setup()
 
         Serial.begin(9600);
         
-        digitalWrite(lights_pin, HIGH);
+        digitalWrite(lights_pin, LOW);
 }
 
 /*==============================================================================
@@ -135,8 +127,8 @@ void setup()
  *============================================================================*/
 void loop() 
 {
-	
 	currentMillis = millis();
+        checkSerial();
 
 	if(currentMillis > arduinoponics_nextExecuteMillis) 
 	{
@@ -166,18 +158,15 @@ void loop()
 	  }
           if(lights_on == true)
           {
-            //fucking PNP....
-            digitalWrite(lights_pin, LOW);
+            digitalWrite(lights_pin, HIGH);
           }
           else if(lights_on == false)
           {
-            digitalWrite(lights_pin, HIGH);
+            digitalWrite(lights_pin, LOW);
           }
                 
           led_blink();
           seconds++;
           sendAnalogs();
-          
-          checkSerial();
 	}
 }
