@@ -53,7 +53,8 @@ end
 
 function ajax_analogs()
 	luci.http.prepare_content("text/plain")
-	luci.http.write(get_analogs_x())
+	--luci.http.write(get_analogs_x())
+	luci.http.write(get_analogs())
 end
 
 function ajax_light()
