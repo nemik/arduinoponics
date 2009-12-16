@@ -15,6 +15,7 @@ var x = function()
 			$('a4_value').update(vals[4]);
 			$('a5_value').update(vals[5]);
 			$('light_value').update(vals[0]);
+			$('temp_value').update(vals[1]);
 		}
 	});
 	};
@@ -27,6 +28,7 @@ setInterval('x()',1000);
 <br />
 <br />
 <h3>Current light reading: <span id="light_value"><%=current_light%></span></h3>
+<h3>Current temperature reading: <span id="temp_value"><%=current_temp%></span>&deg;C</h3>
 <h3>Analog Pin 0: <span id="a0_value"><%=a0_value%></span></h3>
 <h3>Analog Pin 1: <span id="a1_value"><%=a1_value%></span></h3>
 <h3>Analog Pin 2: <span id="a2_value"><%=a2_value%></span></h3>

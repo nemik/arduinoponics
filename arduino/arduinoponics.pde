@@ -72,11 +72,12 @@ void inline sendAnalogs()
   int val4 = analogRead(4);
   int val5 = analogRead(5);
   
-  //[0]0001|[1]10001|2:200|3:300|4:400|5:500
+  //for LM335
+  float tempc = (((5.0 * val1 * 100.0) / 1024.0) - 273.15);
   
   Serial.print(val0);
   Serial.print("|");
-  Serial.print(val1);
+  Serial.print(tempc);
   Serial.print("|");
   Serial.print(val2);
   Serial.print("|");

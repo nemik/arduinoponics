@@ -62,6 +62,7 @@ function ajax_light()
 end
 
 function action_index()
-	local current_light = get_light()
-	luci.template.render("sensorsapp/index", {current_light=current_light})
+	local current_light = get_analog_pin(0)
+	local current_temp = get_analog_pin(1)
+	luci.template.render("sensorsapp/index", {current_light=current_light, current_temp = current_temp})
 end
