@@ -29,6 +29,32 @@ function update_tmp(file, value)
 		file = io.open(fname,"w")
 		file:write(value)
 		file:close()
+		--print("wrote "..value.." to "..fname)
+	end
+end
+
+function update_micro(file, tty)
+	if value ~= nil then
+		fname = "/tmp/digital/"..file
+		f = io.open(fname,"r")
+		value = f:read()
+		f:close()
+		tty:write(value)
+		print(value.." written to tty")
+		f = io:open(fname,"w")
+		f:write("")
+		f:close()
+	end
+end
+
+function toggle_lights(tty)
+	lf = io.open("/tmp/sensors/light","r")
+	v = lf:read()
+	lf:close()
+	if(v == '1') then
+		tty:write('l')
+		f = io.open("/tmp/sensors/light","w+")
+		f:close()
 	end
 end
 
@@ -41,15 +67,15 @@ for line in serial:lines() do
 	-- wait a second for it to clear the read buffer of /dev/ttyS0
 	if os.time() - time > 1 then
 		splits = string.split(line,"|")
-		update_tmp("light",splits[1])
+		update_tmp("analogs",line)
 		update_tmp("0",splits[1])
 		update_tmp("1",splits[2])
 		update_tmp("2",splits[3])
 		update_tmp("3",splits[4])
 		update_tmp("4",splits[5])
 		update_tmp("5",splits[6])
-		update_tmp("analogs",line)
 		print("c: " .. line)
+		toggle_lights(serial)
 	end
 end
 

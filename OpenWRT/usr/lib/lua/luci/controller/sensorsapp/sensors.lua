@@ -5,6 +5,7 @@ function index()
 	entry({"sensors","ajax","get_light"}, call("ajax_light")).dependent=false
 	entry({"sensors","ajax","get_analogs"}, call("ajax_analogs")).dependent=false
 	entry({"sensors","ajax","pin"}, call("ajax_pin")).dependent=false
+	entry({"sensors","ajax","toggle_lights"}, call("ajax_toggle_lights")).dependent=false
 end
 
 function get_analogs_x()
@@ -55,6 +56,14 @@ function ajax_analogs()
 	luci.http.prepare_content("text/plain")
 	--luci.http.write(get_analogs_x())
 	luci.http.write(get_analogs())
+end
+
+function ajax_toggle_lights()
+        f = io.open("/tmp/sensors/light","w+")
+        f:write('1')
+        f:close()
+	luci.http.prepare_content("text/plain")
+	luci.http.write("toggled!")
 end
 
 function ajax_light()

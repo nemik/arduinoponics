@@ -2,6 +2,13 @@
 <script src="/luci-static/resources/prototype.js"></script>
 
 <script>
+
+var toggle_lights = function()
+		    {
+		    	$("lights_button").setAttribute("disabled","disabled");
+		    	new Ajax.Request('/cgi-bin/luci/sensors/ajax/toggle_lights/', { method:'get', onSuccess: function() { $('lights_button').removeAttribute("disabled"); } });
+		    };
+
 var x = function()
 	{
 	new Ajax.Request('/cgi-bin/luci/sensors/ajax/get_analogs/', { method:'get',
@@ -36,4 +43,6 @@ setInterval('x()',1000);
 <h3>Analog Pin 3: <span id="a3_value"><%=a3_value%></span></h3>
 <h3>Analog Pin 4: <span id="a4_value"><%=a4_value%></span></h3>
 <h3>Analog Pin 5: <span id="a5_value"><%=a5_value%></span></h3>
+<hr />
+<h3><button id="lights_button" onclick="toggle_lights()">toggle lights</button></h3>
 <%+footer%>
